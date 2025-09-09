@@ -1,0 +1,20 @@
+[
+    {
+      "id": "1",
+      "title": "Готовая подборка №1",
+      "description": "Комплект для новорожденного на первые месяцы жизни",
+      "image": "https://images.pexels.com/photos/1648375/pexels-photo-1648375.jpeg?auto=compress&cs=tinysrgb&w=500",
+      "products": ["1", "2", "6"],
+      "totalPrice": 1797,
+      "discount": 10
+    },
+    {
+      "id": "2",
+      "title": "Готовая подборка №2",
+      "description": "Летний набор для активных малышей",
+      "image": "https://images.pexels.com/photos/1648379/pexels-photo-1648379.jpeg?auto=compress&cs=tinysrgb&w=500",
+      "products": ["3", "4", "5"],
+      "totalPrice": 1897,
+      "discount": 15
+    }
+  ]
