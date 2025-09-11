@@ -1,149 +1,197 @@
+// src/pages/Catalog.jsx
 import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Search, Filter, ChevronDown, ArrowUpDown } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { useTheme } from '../context/ThemeContext';
+import AnimatedCard from '../components/AnimatedCard';
 import ProductCard from '../components/ProductCard';
-import FilterPanel from '../components/FilterPanel';
-import Pagination from '../components/Pagination';
-import { ChevronDown } from 'lucide-react';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const Catalog = () => {
+  const { theme, isAnimated } = useTheme();
   const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [filters, setFilters] = useState({});
-  const [sortBy, setSortBy] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
-  const [searchParams] = useSearchParams();
-  const productsPerPage = 12;
+  const [categories, setCategories] = useState(['All']);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [sortOption, setSortOption] = useState('default');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   useEffect(() => {
-    // Load products
-    import('../data/products.json').then(module => {
-      setProducts(module.default);
-    });
+    // Fetch products and categories from db.json
+    const fetchData = async () => {
+      try {
+        const [productsResponse, categoriesResponse] = await Promise.all([
+          fetch('http://localhost:3000/products'),
+          fetch('http://localhost:3000/categories'),
+        ]);
+
+        if (!productsResponse.ok || !categoriesResponse.ok) {
+          throw new Error('Failed to fetch data');
+        }
+
+        const productsData = await productsResponse.json();
+        const categoriesData = await categoriesResponse.json();
+
+        setProducts(productsData);
+        setCategories(['All', ...categoriesData.map((cat) => cat.name)]);
+        setLoading(false);
+      } catch (err) {
+        setError('Ошибка загрузки данных. Попробуйте позже.');
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, []);
 
+  // Filter and sort products
   useEffect(() => {
-    // Apply filters from URL params
-    const category = searchParams.get('category');
-    if (category) {
-      setFilters(prev => ({ ...prev, categories: [category] }));
-    }
-  }, [searchParams]);
+    let filtered = [...products];
 
-  useEffect(() => {
-    let result = [...products];
-
-    // Apply filters
-    if (filters.categories && filters.categories.length > 0) {
-      result = result.filter(product => filters.categories.includes(product.category));
-    }
-
-    if (filters.sizes && filters.sizes.length > 0) {
-      result = result.filter(product =>
-        product.sizes.some(size => filters.sizes.includes(size))
+    // Apply search filter
+    if (searchTerm.trim()) {
+      filtered = filtered.filter((product) =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
 
-    if (filters.colors && filters.colors.length > 0) {
-      result = result.filter(product =>
-        product.colors.some(color => filters.colors.includes(color))
-      );
-    }
-
-    if (filters.priceMin) {
-      result = result.filter(product => product.price >= parseInt(filters.priceMin));
-    }
-
-    if (filters.priceMax) {
-      result = result.filter(product => product.price <= parseInt(filters.priceMax));
+    // Apply category filter
+    if (selectedCategory !== 'All') {
+      filtered = filtered.filter((product) => product.category === selectedCategory);
     }
 
     // Apply sorting
-    if (sortBy === 'price-asc') {
-      result.sort((a, b) => a.price - b.price);
-    } else if (sortBy === 'price-desc') {
-      result.sort((a, b) => b.price - a.price);
-    } else if (sortBy === 'name') {
-      result.sort((a, b) => a.name.localeCompare(b.name));
+    if (sortOption === 'price-asc') {
+      filtered.sort((a, b) => a.price - b.price);
+    } else if (sortOption === 'price-desc') {
+      filtered.sort((a, b) => b.price - a.price);
+    } else if (sortOption === 'name-asc') {
+      filtered.sort((a, b) => a.name.localeCompare(b.name));
     }
 
-    setFilteredProducts(result);
-    setCurrentPage(1);
-  }, [products, filters, sortBy]);
+    setProducts(filtered);
+  }, [searchTerm, selectedCategory, sortOption]);
 
-  const clearFilters = () => {
-    setFilters({});
-    setSortBy('');
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
   };
 
-  // Pagination
-  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
-  const startIndex = (currentPage - 1) * productsPerPage;
-  const currentProducts = filteredProducts.slice(startIndex, startIndex + productsPerPage);
+  const toggleFilter = () => {
+    setIsFilterOpen(!isFilterOpen);
+  };
+
+  if (loading) {
+    return (
+      <div className={`min-h-screen flex items-center justify-center ${theme.background} ${theme.text}`}>
+        <LoadingSpinner size="xl" text="Загрузка каталога..." />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className={`min-h-screen flex items-center justify-center ${theme.background} ${theme.text}`}>
+        <AnimatedCard className="p-6 text-center">
+          <p className={`text-lg ${theme.text}`}>{error}</p>
+        </AnimatedCard>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">Каталог</h1>
-          <div className="flex items-center justify-between">
-            <p className="text-gray-600">Найдено товаров: {filteredProducts.length}</p>
-            
-            {/* Sort dropdown */}
-            <div className="relative">
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-2 pr-8 focus:outline-none focus:border-yellow-400"
-              >
-                <option value="">Сортировать по</option>
-                <option value="price-asc">Цена: по возрастанию</option>
-                <option value="price-desc">Цена: по убыванию</option>
-                <option value="name">Название</option>
-              </select>
-              <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+    <div className={`min-h-screen py-8 ${theme.background} ${theme.text}`}>
+      <div className="container mx-auto px-4">
+        {/* Header Section */}
+        <AnimatedCard className="text-center mb-8" hover3D={true} glowEffect={true}>
+          <h1 className={`text-3xl font-bold ${theme.text} mb-4`}>Каталог товаров</h1>
+          <p className={`${theme.textSecondary}`}>
+            Найдите идеальные товары для вашего ребенка
+          </p>
+        </AnimatedCard>
+
+        {/* Search and Filter Section */}
+        <AnimatedCard className="p-6 mb-8" hover3D={true} glowEffect={true}>
+          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+            <div className="relative w-full md:w-1/2">
+              <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 ${theme.textSecondary}`} />
+              <input
+                type="text"
+                placeholder="Поиск товаров..."
+                value={searchTerm}
+                onChange={handleSearch}
+                className={`w-full pl-10 pr-4 py-2 border ${theme.border} rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary)] ${theme.surface} ${theme.text}`}
+              />
+            </div>
+            <div className="flex items-center space-x-4 w-full md:w-auto">
+              <div className="relative">
+                <button
+                  onClick={toggleFilter}
+                  className={`flex items-center px-4 py-2 ${theme.secondary} rounded-lg ${theme.primaryHover} ${isAnimated ? 'transition-all hover:scale-105' : ''}`}
+                >
+                  <Filter className="h-4 w-4 mr-2" />
+                  <span>{selectedCategory}</span>
+                  <ChevronDown className={`h-4 w-4 ml-2 ${isAnimated ? 'transition-transform' : ''} ${isFilterOpen ? 'rotate-180' : ''}`} />
+                </button>
+                {isFilterOpen && (
+                  <div className={`absolute mt-2 w-48 ${theme.surface} border ${theme.border} rounded-lg ${theme.shadow} ${isAnimated ? 'animate-fade-in' : ''} z-10`}>
+                    {categories.map((category) => (
+                      <button
+                        key={category}
+                        onClick={() => {
+                          setSelectedCategory(category);
+                          setIsFilterOpen(false);
+                        }}
+                        className={`block w-full text-left px-4 py-2 ${theme.text} hover:${theme.secondary} ${isAnimated ? 'transition-colors' : ''}`}
+                      >
+                        {category}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div className="relative">
+                <select
+                  value={sortOption}
+                  onChange={(e) => setSortOption(e.target.value)}
+                  className={`px-4 py-2 ${theme.secondary} rounded-lg ${theme.text} focus:outline-none focus:ring-2 focus:ring-[var(--primary)] ${isAnimated ? 'transition-all' : ''}`}
+                >
+                  <option value="default">По умолчанию</option>
+                  <option value="price-asc">Цена: по возрастанию</option>
+                  <option value="price-desc">Цена: по убыванию</option>
+                  <option value="name-asc">Название: A-Z</option>
+                </select>
+                <ArrowUpDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4" />
+              </div>
             </div>
           </div>
-        </div>
+        </AnimatedCard>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Filters */}
-          <div className="lg:col-span-1">
-            <FilterPanel
-              filters={filters}
-              onFilterChange={setFilters}
-              onClearFilters={clearFilters}
-            />
+        {/* Products Grid */}
+        {products.length === 0 ? (
+          <AnimatedCard className="p-6 text-center" hover3D={true}>
+            <p className={`text-lg ${theme.text}`}>Товары не найдены</p>
+          </AnimatedCard>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
           </div>
+        )}
 
-          {/* Products grid */}
-          <div className="lg:col-span-3">
-            {currentProducts.length === 0 ? (
-              <div className="text-center py-12">
-                <p className="text-gray-500 text-lg mb-4">Товары не найдены</p>
-                <button
-                  onClick={clearFilters}
-                  className="bg-yellow-400 text-white px-6 py-2 rounded-lg hover:bg-yellow-500 transition-colors"
-                >
-                  Сбросить фильтры
-                </button>
-              </div>
-            ) : (
-              <>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {currentProducts.map((product) => (
-                    <ProductCard key={product.id} product={product} />
-                  ))}
-                </div>
-
-                <Pagination
-                  currentPage={currentPage}
-                  totalPages={totalPages}
-                  onPageChange={setCurrentPage}
-                />
-              </>
-            )}
-          </div>
-        </div>
+        {/* CTA Section */}
+        <AnimatedCard className={`mt-12 p-8 text-center ${theme.gradient} ${isAnimated ? 'animate-pulse' : ''}`} hover3D={true} glowEffect={true}>
+          <h2 className="text-2xl font-bold text-white mb-4">Не нашли нужный товар?</h2>
+          <p className="text-white mb-6">Оформите быструю заявку, и мы поможем вам!</p>
+          <Link
+            to="/quick-order"
+            className={`inline-block px-8 py-3 ${theme.primary} text-white rounded-lg font-semibold ${theme.primaryHover} ${isAnimated ? 'hover:scale-105 transition-all' : ''} ${theme.glowEffect}`}
+          >
+            Оформить заявку
+          </Link>
+        </AnimatedCard>
       </div>
     </div>
   );
