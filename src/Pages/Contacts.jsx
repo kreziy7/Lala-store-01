@@ -110,7 +110,7 @@ const Contacts = () => {
                   <span className="text-sm font-bold">f</span>
                 </a>
                 <a
-                  href="https://www.instagram.com/lalastore.uz/"
+                  href="https://www.instagram.com/"
                   className="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center text-white hover:bg-pink-700 transition-colors"
                 >
                   <span className="text-sm font-bold">@</span>
@@ -119,7 +119,7 @@ const Contacts = () => {
                   href="https://x.com/"
                   className="w-10 h-10 bg-blue-400 rounded-full flex items-center justify-center text-white hover:bg-blue-500 transition-colors"
                 >
-                  <a > <span className="text-sm font-bold">t</span> </a>
+                    <span className="text-sm font-bold">t</span> 
                 </a>
               </div>
             </div>

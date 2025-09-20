@@ -7,6 +7,7 @@ import { useCart } from '../context/CartContext';
 import { useTheme } from '../context/ThemeContext';
 import CartModal from './CartModal';
 import AnimatedCard from './AnimatedCard';
+import Logo from '../assets/logo.png';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -57,14 +58,9 @@ const Header = () => {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-2">
-              <div className={`w-10 h-10 ${theme.primary} rounded-full flex items-center justify-center ${isAnimated ? 'hover:scale-110 transition-transform duration-300' : ''} ${theme.glowEffect}`}>
-                <span className={`text-white font-bold text-lg ${isAnimated ? 'animate-pulse' : ''}`}>L</span>
-              </div>
-              <div className="flex flex-col">
-                <span className={`text-xl font-bold ${theme.text}`}>LALA</span>
-                <span className={`text-sm ${theme.textSecondary} -mt-1`}>STORE</span>
-              </div>
-            </Link>
+  <img src={Logo} alt="Logo" className="h-10 w-auto" />
+</Link>
+
             {/* Search bar */}
             <form onSubmit={handleSearch} className="hidden md:flex flex-1 max-w-md mx-8">
               <div className="relative w-full">

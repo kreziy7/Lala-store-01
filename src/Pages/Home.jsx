@@ -79,17 +79,17 @@
               {[
                 {
                   title: 'Боди',
-                  image: 'https://images.pexels.com/photos/1648375/pexels-photo-1648375.jpeg?auto=compress&cs=tinysrgb&w=400',
+                  image: 'https://yarodilsya.uz/wp-content/uploads/2023/05/fe5df232cafa4c4e0f1a0294418e5660_111021121127.jpeg',
                   link: '/catalog?category=боди'
                 },
                 {
                   title: 'Комплекты',
-                  image: 'https://images.pexels.com/photos/1648382/pexels-photo-1648382.jpeg?auto=compress&cs=tinysrgb&w=400',
+                  image: 'https://ae04.alicdn.com/kf/H20562e53d60745f28e4ebf70bec71fb7j.jpg_480x480.jpg',
                   link: '/catalog?category=комплекты'
                 },
                 {
                   title: 'Штанишки',
-                  image: 'https://images.pexels.com/photos/1648378/pexels-photo-1648378.jpeg?auto=compress&cs=tinysrgb&w=400',
+                  image: 'https://yarodilsya.uz/wp-content/uploads/2023/04/f3ccdd27d2000e3f9255a7e3e2c48800_082421131018.jpeg',
                   link: '/catalog?category=штанишки'
                 }
               ].map((category, index) => (
@@ -105,7 +105,7 @@
                       className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
-                  <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-30 transition-all flex items-center justify-center">
+                  <div className="absolute inset-0  bg-opacity-40 group-hover:bg-opacity-30 transition-all flex items-center justify-center">
                     <h3 className="text-2xl font-bold text-white">{category.title}</h3>
                   </div>
                 </Link>
@@ -179,7 +179,7 @@
               <input
                 type="email"
                 placeholder="Ваш email"
-                className="flex-1 px-4 py-3 rounded-l-lg focus:outline-none"
+                className="flex-1 px-4 py-3 rounded-l-lg focus:outline-none border border-white"
               />
               <button className="bg-white text-yellow-400 px-6 py-3 rounded-r-lg font-semibold hover:bg-gray-50 transition-colors">
                 Подписаться

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import Logo from '../assets/logo.png';
 
 const Footer = () => {
   return (
@@ -10,13 +11,7 @@ const Footer = () => {
           {/* Company info */}
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold">L</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-lg font-bold">LALA</span>
-                <span className="text-sm text-gray-400 -mt-1">STORE</span>
-              </div>
+             <img src={Logo} alt="" />
             </div>
             <p className="text-gray-300 mb-4">
               Интернет-магазин качественной детской одежды. Заботимся о комфорте ваших малышей.
