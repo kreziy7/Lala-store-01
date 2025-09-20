@@ -48,7 +48,7 @@ const Contacts = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 px-[100px]">
           {/* Contact Information */}
           <div>
             <h2 className="text-2xl font-bold mb-8">Наши контакты</h2>
@@ -104,22 +104,22 @@ const Contacts = () => {
               <h3 className="font-semibold text-lg mb-4">Мы в социальных сетях</h3>
               <div className="flex space-x-4">
                 <a
-                  href="#"
+                  href="https://www.facebook.com/?locale=ru_RU"
                   className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition-colors"
                 >
                   <span className="text-sm font-bold">f</span>
                 </a>
                 <a
-                  href="#"
+                  href="https://www.instagram.com/lalastore.uz/"
                   className="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center text-white hover:bg-pink-700 transition-colors"
                 >
                   <span className="text-sm font-bold">@</span>
                 </a>
                 <a
-                  href="#"
+                  href="https://x.com/"
                   className="w-10 h-10 bg-blue-400 rounded-full flex items-center justify-center text-white hover:bg-blue-500 transition-colors"
                 >
-                  <span className="text-sm font-bold">t</span>
+                  <a > <span className="text-sm font-bold">t</span> </a>
                 </a>
               </div>
             </div>
