@@ -1,0 +1,204 @@
+{
+    "products": [
+      {
+        "id": 1,
+        "title": "Боди Гез резинов 'Фруктик' розовый",
+        "price": 340,
+        "currency": "Руб",
+        "color": "розовый",
+        "pattern": "plain",
+        "availability": "В наличии",
+        "image_url": "https://cdn1.ozone.ru/s3/multimedia-r/6846124563.jpg"
+      },
+      {
+        "id": 2,
+        "title": "Боди Гез резинов 'Фруктик' голубой",
+        "price": 340,
+        "currency": "Руб",
+        "color": "голубой",
+        "pattern": "plain",
+        "availability": "В наличии",
+        "image_url": "https://sun9-79.userapi.com/impg/4nSVhMmEPJ22EeM1R2XD-hnp-Chw2coWIsZx9w/p_6TDVRrm20.jpg?size=715x1080&quality=96&sign=436fbad069274073fa01a89245c426a0&c_uniq_tag=jV_3D_edX0DiACxNLxn7m3_a0xPtYVlhunnqeHLNhaI&type=album"
+      },
+      {
+        "id": 3,
+        "title": "Боди Гез резинов 'Фруктик' розовый",
+        "price": 340,
+        "currency": "Руб",
+        "color": "розовый",
+        "pattern": "plain",
+        "availability": "В наличии",
+        "image_url": "https://main-cdn.sbermegamarket.ru/big1/hlr-system/-2/12/20/13/20/48/27/600002194086b0.jpeg"
+      },
+      {
+        "id": 4,
+        "title": "Боди Гез резинов 'Фруктик' розовый с зайчиком",
+        "price": 340,
+        "currency": "Руб",
+        "color": "розовый",
+        "pattern": "bunny",
+        "availability": "Нет в наличии",
+        "image_url": "https://cdn1.ozone.ru/multimedia/c500/1022851363.jpg "
+      },
+      {
+        "id": 5,
+        "title": "Боди Гез резинов 'Фруктик' белый",
+        "price": 340,
+        "currency": "Руб",
+        "color": "белый",
+        "pattern": "plain",
+        "availability": "На складе",
+        "image_url": "https://basket-11.wbbasket.ru/vol1623/part162361/162361851/images/big/1.webp"
+      },
+      {
+        "id": 6,
+        "title": "Боди Гез резинов 'Фруктик' розовый",
+        "price": 340,
+        "currency": "Руб",
+        "color": "розовый",
+        "pattern": "plain",
+        "availability": "В наличии",
+        "image_url": "https://valeotrikotage.com/images/catalog/020119305005/1a89094001750840664.jpg"
+      },
+      {
+        "id": 7,
+        "title": "Боди Гез резинов 'Фруктик' голубой",
+        "price": 340,
+        "currency": "Руб",
+        "color": "голубой",
+        "pattern": "plain",
+        "availability": "В наличии",
+        "image_url": "https://cdn.100sp.ru/pictures/174620591"
+      },
+      {
+        "id": 8,
+        "title": "Боди Гез резинов 'Фруктик' оранжевый",
+        "price": 340,
+        "currency": "Руб",
+        "color": "оранжевый",
+        "pattern": "plain",
+        "availability": "В наличии",
+        "image_url": "https://avatars.mds.yandex.net/get-mpic/4034173/img_id3949059812799362640.jpeg/orig"
+      },
+      {
+        "id": 9,
+        "title": "Боди Гез резинов 'Фруктик' розовый с зайчиком",
+        "price": 340,
+        "currency": "Руб",
+        "color": "розовый",
+        "pattern": "bunny",
+        "availability": "Нет в наличии",
+        "image_url": "https://img.votonia.ru/products/5e738d7ee7ac3.jpg"
+      },
+      {
+        "id": 10,
+        "title": "Боди Гез резинов 'Фруктик' белый",
+        "price": 340,
+        "currency": "Руб",
+        "color": "белый",
+        "pattern": "plain",
+        "availability": "В наличии",
+        "image_url": "https://basket-11.wbbasket.ru/vol1623/part162361/162361851/images/big/1.webp"
+      },
+      {
+        "id": 11,
+        "title": "Боди Гез резинов 'Фруктик' розовый",
+        "price": 340,
+        "currency": "Руб",
+        "color": "розовый",
+        "pattern": "plain",
+        "availability": "В наличии",
+        "image_url": "https://i.pinimg.com/736x/ae/3a/05/ae3a05c8aaf41927a9c66416810b39c1.jpg"
+      },
+      {
+        "id": 12,
+        "title": "Боди Гез резинов 'Фруктик' голубой",
+        "price": 340,
+        "currency": "Руб",
+        "color": "голубой",
+        "pattern": "plain",
+        "availability": "В наличии",
+        "image_url": "https://cdn.100sp.ru/pictures/1215615712"
+      },
+      {
+        "id": 13,
+        "title": "Боди Гез резинов 'Фруктик' оранжевый с фруктом",
+        "price": 340,
+        "currency": "Руб",
+        "color": "оранжевый",
+        "pattern": "fruit",
+        "availability": "В наличии",
+        "image_url": "https://i.pinimg.com/originals/52/d5/8c/52d58cd8e3aabd7e3c0d3aa4a24562af.jpg"
+      },
+      {
+        "id": 14,
+        "title": "Боди Гез резинов 'Фруктик' розовый с зайчиком",
+        "price": 340,
+        "currency": "Руб",
+        "color": "розовый",
+        "pattern": "bunny",
+        "availability": "Нет в наличии",
+        "image_url": "https://cdn.100sp.ru/pictures/931747006"
+      },
+      {
+        "id": 15,
+        "title": "Боди Гез резинов 'Фруктик' розовый",
+        "price": 340,
+        "currency": "Руб",
+        "color": "розовый",
+        "pattern": "plain",
+        "availability": "В наличии",
+        "image_url": "https://cdn1.ozone.ru/s3/multimedia-j/6596832511.jpg"
+      },
+      {
+        "id": 16,
+        "title": "Боди Гез резинов 'Фруктик' розовый",
+        "price": 340,
+        "currency": "Руб",
+        "color": "розовый",
+        "pattern": "plain",
+        "availability": "В наличии",
+        "image_url": "https://cdn1.ozone.ru/s3/multimedia-j/6596832511.jpg"
+      },
+      {
+        "id": 17,
+        "title": "Боди Гез резинов 'Фруктик' голубой",
+        "price": 340,
+        "currency": "Руб",
+        "color": "голубой",
+        "pattern": "plain",
+        "availability": "В наличии",
+        "image_url": "https://cdn1.ozone.ru/s3/multimedia-2/6665475026.jpg"
+      },
+      {
+        "id": 18,
+        "title": "Боди Гез резинов 'Фруктик' оранжевый",
+        "price": 340,
+        "currency": "Руб",
+        "color": "оранжевый",
+        "pattern": "plain",
+        "availability": "В наличии",
+        "image_url": "https://n.cdn.cdek.shopping/images/shopping/EIgvC8XDvzHy03R4.webp?v=1"
+      },
+      {
+        "id": 19,
+        "title": "Боди Гез резинов 'Фруктик' розовый с зайчиком",
+        "price": 340,
+        "currency": "Руб",
+        "color": "розовый",
+        "pattern": "bunny",
+        "availability": "Нет в наличии",
+        "image_url": "https://spclub23.ru/files/32b/32b670bad8e0c31326cf24ce20c3b9e2.jpg"
+      },
+      {
+        "id": 20,
+        "title": "Боди Гез резинов 'Фруктик' белый",
+        "price": 340,
+        "currency": "Руб",
+        "color": "белый",
+        "pattern": "plain",
+        "availability": "На складе",
+        "image_url": "https://frankfurt.apollo.olxcdn.com/v1/files/4waxwtu7uqco1-UZ/image;s=1800x1800"
+      }
+    ]
+  }
