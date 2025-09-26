@@ -1,204 +1,222 @@
-{
-    "products": [
-      {
-        "id": 1,
-        "title": "Боди Гез резинов 'Фруктик' розовый",
-        "price": 340,
-        "currency": "Руб",
-        "color": "розовый",
-        "pattern": "plain",
-        "availability": "В наличии",
-        "image_url": "https://cdn1.ozone.ru/s3/multimedia-r/6846124563.jpg"
-      },
-      {
-        "id": 2,
-        "title": "Боди Гез резинов 'Фруктик' голубой",
-        "price": 340,
-        "currency": "Руб",
-        "color": "голубой",
-        "pattern": "plain",
-        "availability": "В наличии",
-        "image_url": "https://sun9-79.userapi.com/impg/4nSVhMmEPJ22EeM1R2XD-hnp-Chw2coWIsZx9w/p_6TDVRrm20.jpg?size=715x1080&quality=96&sign=436fbad069274073fa01a89245c426a0&c_uniq_tag=jV_3D_edX0DiACxNLxn7m3_a0xPtYVlhunnqeHLNhaI&type=album"
-      },
-      {
-        "id": 3,
-        "title": "Боди Гез резинов 'Фруктик' розовый",
-        "price": 340,
-        "currency": "Руб",
-        "color": "розовый",
-        "pattern": "plain",
-        "availability": "В наличии",
-        "image_url": "https://main-cdn.sbermegamarket.ru/big1/hlr-system/-2/12/20/13/20/48/27/600002194086b0.jpeg"
-      },
-      {
-        "id": 4,
-        "title": "Боди Гез резинов 'Фруктик' розовый с зайчиком",
-        "price": 340,
-        "currency": "Руб",
-        "color": "розовый",
-        "pattern": "bunny",
-        "availability": "Нет в наличии",
-        "image_url": "https://cdn1.ozone.ru/multimedia/c500/1022851363.jpg "
-      },
-      {
-        "id": 5,
-        "title": "Боди Гез резинов 'Фруктик' белый",
-        "price": 340,
-        "currency": "Руб",
-        "color": "белый",
-        "pattern": "plain",
-        "availability": "На складе",
-        "image_url": "https://basket-11.wbbasket.ru/vol1623/part162361/162361851/images/big/1.webp"
-      },
-      {
-        "id": 6,
-        "title": "Боди Гез резинов 'Фруктик' розовый",
-        "price": 340,
-        "currency": "Руб",
-        "color": "розовый",
-        "pattern": "plain",
-        "availability": "В наличии",
-        "image_url": "https://valeotrikotage.com/images/catalog/020119305005/1a89094001750840664.jpg"
-      },
-      {
-        "id": 7,
-        "title": "Боди Гез резинов 'Фруктик' голубой",
-        "price": 340,
-        "currency": "Руб",
-        "color": "голубой",
-        "pattern": "plain",
-        "availability": "В наличии",
-        "image_url": "https://cdn.100sp.ru/pictures/174620591"
-      },
-      {
-        "id": 8,
-        "title": "Боди Гез резинов 'Фруктик' оранжевый",
-        "price": 340,
-        "currency": "Руб",
-        "color": "оранжевый",
-        "pattern": "plain",
-        "availability": "В наличии",
-        "image_url": "https://avatars.mds.yandex.net/get-mpic/4034173/img_id3949059812799362640.jpeg/orig"
-      },
-      {
-        "id": 9,
-        "title": "Боди Гез резинов 'Фруктик' розовый с зайчиком",
-        "price": 340,
-        "currency": "Руб",
-        "color": "розовый",
-        "pattern": "bunny",
-        "availability": "Нет в наличии",
-        "image_url": "https://img.votonia.ru/products/5e738d7ee7ac3.jpg"
-      },
-      {
-        "id": 10,
-        "title": "Боди Гез резинов 'Фруктик' белый",
-        "price": 340,
-        "currency": "Руб",
-        "color": "белый",
-        "pattern": "plain",
-        "availability": "В наличии",
-        "image_url": "https://basket-11.wbbasket.ru/vol1623/part162361/162361851/images/big/1.webp"
-      },
-      {
-        "id": 11,
-        "title": "Боди Гез резинов 'Фруктик' розовый",
-        "price": 340,
-        "currency": "Руб",
-        "color": "розовый",
-        "pattern": "plain",
-        "availability": "В наличии",
-        "image_url": "https://i.pinimg.com/736x/ae/3a/05/ae3a05c8aaf41927a9c66416810b39c1.jpg"
-      },
-      {
-        "id": 12,
-        "title": "Боди Гез резинов 'Фруктик' голубой",
-        "price": 340,
-        "currency": "Руб",
-        "color": "голубой",
-        "pattern": "plain",
-        "availability": "В наличии",
-        "image_url": "https://cdn.100sp.ru/pictures/1215615712"
-      },
-      {
-        "id": 13,
-        "title": "Боди Гез резинов 'Фруктик' оранжевый с фруктом",
-        "price": 340,
-        "currency": "Руб",
-        "color": "оранжевый",
-        "pattern": "fruit",
-        "availability": "В наличии",
-        "image_url": "https://i.pinimg.com/originals/52/d5/8c/52d58cd8e3aabd7e3c0d3aa4a24562af.jpg"
-      },
-      {
-        "id": 14,
-        "title": "Боди Гез резинов 'Фруктик' розовый с зайчиком",
-        "price": 340,
-        "currency": "Руб",
-        "color": "розовый",
-        "pattern": "bunny",
-        "availability": "Нет в наличии",
-        "image_url": "https://cdn.100sp.ru/pictures/931747006"
-      },
-      {
-        "id": 15,
-        "title": "Боди Гез резинов 'Фруктик' розовый",
-        "price": 340,
-        "currency": "Руб",
-        "color": "розовый",
-        "pattern": "plain",
-        "availability": "В наличии",
-        "image_url": "https://cdn1.ozone.ru/s3/multimedia-j/6596832511.jpg"
-      },
-      {
-        "id": 16,
-        "title": "Боди Гез резинов 'Фруктик' розовый",
-        "price": 340,
-        "currency": "Руб",
-        "color": "розовый",
-        "pattern": "plain",
-        "availability": "В наличии",
-        "image_url": "https://cdn1.ozone.ru/s3/multimedia-j/6596832511.jpg"
-      },
-      {
-        "id": 17,
-        "title": "Боди Гез резинов 'Фруктик' голубой",
-        "price": 340,
-        "currency": "Руб",
-        "color": "голубой",
-        "pattern": "plain",
-        "availability": "В наличии",
-        "image_url": "https://cdn1.ozone.ru/s3/multimedia-2/6665475026.jpg"
-      },
-      {
-        "id": 18,
-        "title": "Боди Гез резинов 'Фруктик' оранжевый",
-        "price": 340,
-        "currency": "Руб",
-        "color": "оранжевый",
-        "pattern": "plain",
-        "availability": "В наличии",
-        "image_url": "https://n.cdn.cdek.shopping/images/shopping/EIgvC8XDvzHy03R4.webp?v=1"
-      },
-      {
-        "id": 19,
-        "title": "Боди Гез резинов 'Фруктик' розовый с зайчиком",
-        "price": 340,
-        "currency": "Руб",
-        "color": "розовый",
-        "pattern": "bunny",
-        "availability": "Нет в наличии",
-        "image_url": "https://spclub23.ru/files/32b/32b670bad8e0c31326cf24ce20c3b9e2.jpg"
-      },
-      {
-        "id": 20,
-        "title": "Боди Гез резинов 'Фруктик' белый",
-        "price": 340,
-        "currency": "Руб",
-        "color": "белый",
-        "pattern": "plain",
-        "availability": "На складе",
-        "image_url": "https://frankfurt.apollo.olxcdn.com/v1/files/4waxwtu7uqco1-UZ/image;s=1800x1800"
-      }
-    ]
-  }
+[
+    {
+      "id": "1",
+      "name": "Боди для новорожденных",
+      "description": "Мягкое хлопковое боди с застежками на плечах",
+      "price": 599,
+      "category": "Новорожденные",
+      "image": "https://images.pexels.com/photos/1648375/pexels-photo-1648375.jpeg?auto=compress&cs=tinysrgb&w=500",
+      "sizes": ["56", "62", "68"],
+      "colors": ["Белый", "Розовый", "Голубой"],
+      "inStock": true
+    },
+    {
+      "id": "2", 
+      "name": "Ползунки хлопковые",
+      "description": "Удобные ползунки из 100% органического хлопка",
+      "price": 499,
+      "category": "Новорожденные",
+      "image": "https://images.pexels.com/photos/1648379/pexels-photo-1648379.jpeg?auto=compress&cs=tinysrgb&w=500",
+      "sizes": ["56", "62", "68", "74"],
+      "colors": ["Белый", "Желтый", "Зеленый"],
+      "inStock": true
+    },
+    {
+      "id": "3",
+      "name": "Шапочка вязаная",
+      "description": "Теплая вязаная шапочка для малышей",
+      "price": 399,
+      "category": "Аксессуары",
+      "image": "https://images.pexels.com/photos/1648380/pexels-photo-1648380.jpeg?auto=compress&cs=tinysrgb&w=500",
+      "sizes": ["40-42", "44-46"],
+      "colors": ["Белый", "Розовый", "Голубой", "Серый"],
+      "inStock": true
+    },
+    {
+      "id": "4",
+      "name": "Комплект летний",
+      "description": "Легкий летний комплект: футболка и шорты",
+      "price": 799,
+      "category": "Лето",
+      "image": "https://images.pexels.com/photos/1648382/pexels-photo-1648382.jpeg?auto=compress&cs=tinysrgb&w=500",
+      "sizes": ["68", "74", "80", "86"],
+      "colors": ["Белый", "Желтый", "Красный"],
+      "inStock": true
+    },
+    {
+      "id": "5",
+      "name": "Платье для девочки",
+      "description": "Нарядное платье с оборками",
+      "price": 899,
+      "category": "Девочки",
+      "image": "https://images.pexels.com/photos/1648385/pexels-photo-1648385.jpeg?auto=compress&cs=tinysrgb&w=500",
+      "sizes": ["74", "80", "86", "92"],
+      "colors": ["Розовый", "Фиолетовый", "Белый"],
+      "inStock": true
+    },
+    {
+      "id": "6",
+      "name": "Комбинезон зимний",
+      "description": "Теплый зимний комбинезон с утеплителем",
+      "price": 1299,
+      "category": "Зима",
+      "image": "https://images.pexels.com/photos/1648387/pexels-photo-1648387.jpeg?auto=compress&cs=tinysrgb&w=500",
+      "sizes": ["68", "74", "80", "86", "92"],
+      "colors": ["Синий", "Красный", "Серый"],
+      "inStock": true
+    },
+    {
+      "id": "7",
+      "name": "Носки махровые",
+      "description": "Мягкие махровые носочки с противоскользящей подошвой",
+      "price": 199,
+      "category": "Аксессуары",
+      "image": "https://images.pexels.com/photos/1648390/pexels-photo-1648390.jpeg?auto=compress&cs=tinysrgb&w=500",
+      "sizes": ["9-12", "12-15", "15-18"],
+      "colors": ["Белый", "Розовый", "Голубой", "Желтый"],
+      "inStock": true
+    },
+    {
+      "id": "8",
+      "name": "Рубашка для мальчика",
+      "description": "Классическая рубашка из натурального хлопка",
+      "price": 699,
+      "category": "Мальчики",
+      "image": "https://images.pexels.com/photos/1648392/pexels-photo-1648392.jpeg?auto=compress&cs=tinysrgb&w=500",
+      "sizes": ["86", "92", "98", "104"],
+      "colors": ["Белый", "Голубой", "Синий"],
+      "inStock": true
+    },
+    {
+      "id": "9",
+      "name": "Джинсы детские",
+      "description": "Удобные джинсы с регулируемой талией",
+      "price": 999,
+      "category": "Мальчики",
+      "image": "https://images.pexels.com/photos/1648395/pexels-photo-1648395.jpeg?auto=compress&cs=tinysrgb&w=500",
+      "sizes": ["86", "92", "98", "104", "110"],
+      "colors": ["Синий", "Черный"],
+      "inStock": true
+    },
+    {
+      "id": "10",
+      "name": "Кардиган вязаный",
+      "description": "Теплый вязаный кардиган на пуговицах",
+      "price": 1199,
+      "category": "Осень-Весна",
+      "image": "https://images.pexels.com/photos/1648397/pexels-photo-1648397.jpeg?auto=compress&cs=tinysrgb&w=500",
+      "sizes": ["74", "80", "86", "92", "98"],
+      "colors": ["Серый", "Бежевый", "Розовый"],
+      "inStock": true
+    },
+    {
+      "id": "11",
+      "name": "Пижама флисовая",
+      "description": "Мягкая флисовая пижама для комфортного сна",
+      "price": 1099,
+      "category": "Пижамы",
+      "image": "https://images.pexels.com/photos/1648400/pexels-photo-1648400.jpeg?auto=compress&cs=tinysrgb&w=500",
+      "sizes": ["86", "92", "98", "104"],
+      "colors": ["Розовый", "Голубой", "Белый"],
+      "inStock": true
+    },
+    {
+      "id": "12",
+      "name": "Леггинсы для девочки",
+      "description": "Эластичные леггинсы с принтом",
+      "price": 499,
+      "category": "Девочки",
+      "image": "https://images.pexels.com/photos/1648402/pexels-photo-1648402.jpeg?auto=compress&cs=tinysrgb&w=500",
+      "sizes": ["74", "80", "86", "92", "98"],
+      "colors": ["Черный", "Серый", "Фиолетовый"],
+      "inStock": true
+    },
+    {
+      "id": "13",
+      "name": "Худи с капюшоном",
+      "description": "Удобное худи из хлопка с начесом",
+      "price": 899,
+      "category": "Мальчики",
+      "image": "https://images.pexels.com/photos/1648405/pexels-photo-1648405.jpeg?auto=compress&cs=tinysrgb&w=500",
+      "sizes": ["86", "92", "98", "104", "110"],
+      "colors": ["Серый", "Синий", "Черный"],
+      "inStock": true
+    },
+    {
+      "id": "14",
+      "name": "Сарафан летний",
+      "description": "Легкий летний сарафан из льна",
+      "price": 799,
+      "category": "Девочки",
+      "image": "https://images.pexels.com/photos/1648407/pexels-photo-1648407.jpeg?auto=compress&cs=tinysrgb&w=500",
+      "sizes": ["80", "86", "92", "98"],
+      "colors": ["Белый", "Желтый", "Розовый"],
+      "inStock": true
+    },
+    {
+      "id": "15",
+      "name": "Шорты спортивные",
+      "description": "Легкие спортивные шорты для активных игр",
+      "price": 599,
+      "category": "Спорт",
+      "image": "https://images.pexels.com/photos/1648410/pexels-photo-1648410.jpeg?auto=compress&cs=tinysrgb&w=500",
+      "sizes": ["86", "92", "98", "104"],
+      "colors": ["Синий", "Зеленый", "Серый"],
+      "inStock": true
+    },
+    {
+      "id": "16",
+      "name": "Жилетка утепленная",
+      "description": "Легкая утепленная жилетка для прохладной погоды",
+      "price": 999,
+      "category": "Осень-Весна",
+      "image": "https://images.pexels.com/photos/1648412/pexels-photo-1648412.jpeg?auto=compress&cs=tinysrgb&w=500",
+      "sizes": ["86", "92", "98", "104"],
+      "colors": ["Синий", "Красный", "Зеленый"],
+      "inStock": true
+    },
+    {
+      "id": "17",
+      "name": "Колготки детские",
+      "description": "Плотные колготки из хлопка",
+      "price": 299,
+      "category": "Аксессуары",
+      "image": "https://images.pexels.com/photos/1648415/pexels-photo-1648415.jpeg?auto=compress&cs=tinysrgb&w=500",
+      "sizes": ["74-80", "86-92", "98-104"],
+      "colors": ["Белый", "Черный", "Серый", "Розовый"],
+      "inStock": true
+    },
+    {
+      "id": "18",
+      "name": "Футболка с принтом",
+      "description": "Яркая футболка с детским принтом",
+      "price": 499,
+      "category": "Лето",
+      "image": "https://images.pexels.com/photos/1648417/pexels-photo-1648417.jpeg?auto=compress&cs=tinysrgb&w=500",
+      "sizes": ["74", "80", "86", "92", "98"],
+      "colors": ["Белый", "Красный", "Синий"],
+      "inStock": true
+    },
+    {
+      "id": "19",
+      "name": "Куртка ветровка",
+      "description": "Легкая ветровка с капюшоном",
+      "price": 1299,
+      "category": "Осень-Весна",
+      "image": "https://images.pexels.com/photos/1648420/pexels-photo-1648420.jpeg?auto=compress&cs=tinysrgb&w=500",
+      "sizes": ["86", "92", "98", "104", "110"],
+      "colors": ["Синий", "Желтый", "Красный"],
+      "inStock": true
+    },
+    {
+      "id": "20",
+      "name": "Слипы для новорожденных",
+      "description": "Удобные слипы с застежками по всей длине",
+      "price": 699,
+      "category": "Новорожденные",
+      "image": "https://images.pexels.com/photos/1648422/pexels-photo-1648422.jpeg?auto=compress&cs=tinysrgb&w=500",
+      "sizes": ["56", "62", "68", "74"],
+      "colors": ["Белый", "Розовый", "Голубой", "Желтый"],
+      "inStock": true
+    }
+  ]
