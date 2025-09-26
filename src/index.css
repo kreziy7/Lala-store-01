@@ -1,1 +1,6 @@
+<<<<<<< HEAD
 @import "tailwindcss";
+=======
+@import "tailwindcss";
+@plugin "daisyui";
+>>>>>>> Anora
