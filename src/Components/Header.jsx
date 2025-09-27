@@ -7,6 +7,7 @@ import { useCart } from '../context/CartContext';
 import { useTheme } from '../context/ThemeContext';
 import CartModal from './CartModal';
 import AnimatedCard from './AnimatedCard';
+import logo2 from '../assets/Logo2.svg'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -61,8 +62,7 @@ const Header = () => {
                 <span className={`text-white font-bold text-lg ${isAnimated ? 'animate-pulse' : ''}`}>L</span>
               </div>
               <div className="flex flex-col">
-                <span className={`text-xl font-bold ${theme.text}`}>LALA</span>
-                <span className={`text-sm ${theme.textSecondary} -mt-1`}>STORE</span>
+                <img src={logo2} alt="" />
               </div>
             </Link>
             {/* Search bar */}
@@ -89,7 +89,7 @@ const Header = () => {
               <button
                 onClick={toggleCart}
                 className={`relative p-2 ${theme.textSecondary} hover:${theme.accent} ${isAnimated ? 'transition-all duration-300 hover:scale-110' : ''}`}
-              >
+              > 
                 <ShoppingCart className="h-6 w-6" />
                 {totalItems > 0 && (
                   <span className={`absolute -top-2 -right-2 ${theme.primary} text-white text-xs rounded-full h-5 w-5 flex items-center justify-center ${isAnimated ? 'animate-bounce' : ''}`}>
