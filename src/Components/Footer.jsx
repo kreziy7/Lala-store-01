@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 
 const Footer = () => {
+  //cfgxcfg
   return (
     <footer className="bg-gray-800 text-white">
       <div className="container mx-auto px-4 py-12">
@@ -43,6 +44,7 @@ const Footer = () => {
                   Каталог
                 </Link>
               </li>
+              
               <li>
                 <Link to="/collections" className="text-gray-300 hover:text-yellow-400 transition-colors">
                   Готовые подборки
