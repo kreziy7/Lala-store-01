@@ -60,9 +60,9 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  const clearCart = () => {
-    setItems([]);
-  };
+  // const clearCart = () => {
+  //   setItems([]);
+  // };
 
   const toggleCart = () => {
     setIsOpen(!isOpen);
@@ -76,7 +76,7 @@ export const CartProvider = ({ children }) => {
     addToCart,
     removeFromCart,
     updateQuantity,
-    clearCart,
+    // clearCart,
     totalItems,
     totalPrice,
     isOpen,

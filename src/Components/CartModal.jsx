@@ -1,15 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { X, Plus, Minus, ShoppingBag } from 'lucide-react';
-import { useCart } from '../context/CartContext';
 
 const CartModal = ({ isOpen, onClose }) => {
-  const { items, updateQuantity, removeFromCart, totalPrice } = useCart();
+  const [items, setItems] = useState([]);
+
+  // Load items from localStorage when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+      setItems(storedCart);
+    }
+  }, [isOpen]);
+
+  // Save items back to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(items));
+  }, [items]);
+
+  const updateQuantity = (id, quantity) => {
+    if (quantity < 1) return; // prevent going below 1
+    setItems(prev =>
+      prev.map(item =>
+        item.id === id ? { ...item, quantity } : item
+      )
+    );
+  };
+
+  const removeFromCart = (id) => {
+    setItems(prev => prev.filter(item => item.id !== id));
+  };
+
+  const totalPrice = items.reduce((sum, item) => sum + item.price * (item.quantity || 1), 0);
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-end">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm  z-50 flex justify-end">
       <div className="bg-white w-full max-w-md h-full overflow-y-auto">
         <div className="p-4 border-b flex items-center justify-between">
           <h2 className="text-lg font-semibold">Корзина</h2>
@@ -46,7 +73,9 @@ const CartModal = ({ isOpen, onClose }) => {
                     />
                     <div className="flex-1">
                       <h3 className="font-medium text-sm">{item.name}</h3>
-                      <p className="text-yellow-600 font-semibold">{item.price.toLocaleString()} сум</p>
+                      <p className="text-yellow-600 font-semibold">
+                        {item.price.toLocaleString()} сум
+                      </p>
                       {item.size && <p className="text-xs text-gray-500">Размер: {item.size}</p>}
                       {item.color && <p className="text-xs text-gray-500">Цвет: {item.color}</p>}
                     </div>

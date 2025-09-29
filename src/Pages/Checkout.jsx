@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import { CreditCard, MapPin, Phone, Mail } from 'lucide-react';
 
 const Checkout = () => {
-  const { items, totalPrice, clearCart } = useCart();
+  const { items, totalPrice } = useCart();
   const { user } = useAuth();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -58,7 +58,7 @@ const Checkout = () => {
       orders.push(order);
       localStorage.setItem('lalastore_orders', JSON.stringify(orders));
 
-      clearCart();
+      // clearCart();
       setLoading(false);
       navigate('/payment-return', { state: { orderId: order.id, success: true } });
     }, 2000);

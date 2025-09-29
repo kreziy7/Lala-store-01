@@ -1,141 +1,172 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Plus, Minus, X, ShoppingBag } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { X, Minus, Plus } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import pushti from "../assets/pushti.png";
+import kok from "../assets/kok.png";
+import pushti2 from "../assets/pushti2.png";
+import mushuk from "../assets/mushuk.png";
+import fruktik from "../assets/fruktik.png";
+import pushti3 from "../assets/pushti3.png";
+
+// Sample cart items (in real app, this comes from context)
+const cartItems = [
+  {
+    id: 1,
+    image: pushti,
+    name: 'Боди без рукавов "ФРУК-ТИК", розовый',
+    composition: 'Скула 20% Размер 74',
+    price: 349,
+    quantity: 1,
+    total: 349,
+  },
+  {
+    id: 2,
+    image: kok,
+    name: 'Боди без рукавов "ФРУК-ТИК", розовый',
+    composition: 'Скула 20% Размер 74',
+    price: 349,
+    quantity: 1,
+    total: 349,
+  },
+  {
+    id: 3,
+    image: pushti2,
+    name: 'Боди без рукавов "ФРУК-ТИК", розовый',
+    composition: 'Скула 20% Размер 74',
+    price: 500,
+    quantity: 1,
+    total: 500,
+  },
+];
+
+// Sample previously viewed products
+const previouslyViewed = [
+  { id: 4, name: 'Боди без рукавов "ФРУК-ТИК", розовый', price: 349, image: mushuk },
+  { id: 5, name: 'Боди без рукавов "ФРУК-ТИК", розовый', price: 349, image: fruktik },
+  { id: 6, name: 'Боди без рукавов "ФРУК-ТИК", розовый', price: 349, image: pushti3 },
+  { id: 7, name: 'Боди без рукавов "ДРУГ-ТИК", розовый', price: 349, image: pushti },
+  { id: 8, name: 'Боди без рукавов "ФРУК-ТИК", розовый', price: 349, image: kok },
+  { id: 9, name: 'Боди без рукавов "ФРУК-ТИК", розовый', price: 349, image: pushti2 },
+];
 
 const Cart = () => {
-  const { items, updateQuantity, removeFromCart, totalPrice, clearCart } = useCart();
+  const { removeFromCart, updateQuantity } = useCart(); // Assuming these functions exist in CartContext
 
-  if (items.length === 0) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center py-12">
-        <ShoppingBag className="h-24 w-24 text-gray-300 mb-8" />
-        <h1 className="text-3xl font-bold text-gray-900 mb-4">Ваша корзина пуста</h1>
-        <p className="text-gray-600 mb-8 text-center max-w-md">
-          Добавьте товары в корзину, чтобы они появились здесь
-        </p>
-        <Link
-          to="/catalog"
-          className="bg-yellow-400 text-white px-8 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition-colors"
-        >
-          Перейти к покупкам
-        </Link>
-      </div>
-    );
-  }
+  // Calculate totals
+  const subtotal = cartItems.reduce((sum, item) => sum + item.total, 0);
+  const discount = 232; // Sample discount
+  const total = subtotal - discount;
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-gray-100 py-8">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Корзина</h1>
-          <button
-            onClick={clearCart}
-            className="text-red-600 hover:text-red-700 font-medium"
-          >
-            Очистить корзину
+        <h1 className="text-3xl font-bold mb-8 text-gray-800">Корзина</h1>
+        
+        {/* Cart Items Table */}
+        <div className="bg-white rounded-lg shadow-md mb-8 overflow-x-auto">
+          <table className="w-full">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="p-4 text-left"><input type="checkbox" className="accent-blue-500" /></th>
+                <th className="p-4 text-left">Товар</th>
+                <th className="p-4 text-left">Цена</th>
+                <th className="p-4 text-left">Количество</th>
+                <th className="p-4 text-left">В сумме</th>
+                <th className="p-4"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {cartItems.map(item => (
+                <motion.tr
+                  key={item.id}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="border-t"
+                >
+                  <td className="p-4"><input type="checkbox" className="accent-blue-500" /></td>
+                  <td className="p-4 flex items-center space-x-4">
+                    <img src={item.image} alt={item.name} className="w-16 h-16 object-contain" />
+                    <div>
+                      <h3 className="font-medium">{item.name}</h3>
+                      <p className="text-sm text-gray-500">{item.composition}</p>
+                    </div>
+                  </td>
+                  <td className="p-4 font-medium">{item.price} P</td>
+                  <td className="p-4">
+                    <div className="flex items-center space-x-2">
+                      <button 
+                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                        className="p-1 bg-gray-200 rounded"
+                        disabled={item.quantity <= 1}
+                      >
+                        <Minus className="h-4 w-4" />
+                      </button>
+                      <span className="w-12 text-center">{item.quantity}</span>
+                      <button 
+                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                        className="p-1 bg-gray-200 rounded"
+                      >
+                        <Plus className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </td>
+                  <td className="p-4 font-medium">{item.total} P</td>
+                  <td className="p-4">
+                    <button onClick={() => removeFromCart(item.id)}>
+                      <X className="h-5 w-5 text-gray-500 hover:text-red-500" />
+                    </button>
+                  </td>
+                </motion.tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        
+        {/* Totals */}
+        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+          <h2 className="text-xl font-bold mb-4">Итого:</h2>
+          <div className="space-y-2">
+            <div className="flex justify-between">
+              <span>Общая цена товаров:</span>
+              <span>{subtotal} P</span>
+            </div>
+            <div className="flex justify-between text-red-500">
+              <span>Скидка:</span>
+              <span>-{discount} P</span>
+            </div>
+            <div className="flex justify-between font-bold text-xl border-t pt-2">
+              <span>К оплате:</span>
+              <span>{total} P</span>
+            </div>
+          </div>
+          <button className="w-full mt-6 bg-yellow-400 text-gray-800 py-3 rounded-lg font-bold hover:bg-yellow-500 transition">
+            ОФОРМИТЬ ЗАКАЗ
+          </button>
+          <button className="w-full mt-4 bg-blue-500 text-white py-3 rounded-lg font-bold hover:bg-blue-600 transition">
+            БЫСТРАЯ ЗАКАЗ
           </button>
         </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Cart Items */}
-          <div className="lg:col-span-2 space-y-4">
-            {items.map((item) => (
-              <div key={`${item.id}-${item.size}-${item.color}`} className="bg-white p-6 rounded-2xl shadow-md">
-                <div className="flex items-center space-x-4">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-20 h-20 object-cover rounded-lg"
-                  />
-                  
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-gray-900">{item.name}</h3>
-                    <p className="text-yellow-600 font-semibold text-lg">
-                      {item.price.toLocaleString()} сум
-                    </p>
-                    {item.size && (
-                      <p className="text-sm text-gray-500">Размер: {item.size}</p>
-                    )}
-                    {item.color && (
-                      <p className="text-sm text-gray-500">Цвет: {item.color}</p>
-                    )}
-                  </div>
-
-                  <div className="flex items-center space-x-3">
-                    <button
-                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                      className="w-8 h-8 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center justify-center"
-                    >
-                      <Minus className="h-4 w-4" />
-                    </button>
-                    <span className="w-12 text-center font-semibold">{item.quantity}</span>
-                    <button
-                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                      className="w-8 h-8 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center justify-center"
-                    >
-                      <Plus className="h-4 w-4" />
-                    </button>
-                  </div>
-
-                  <div className="text-right">
-                    <p className="font-bold text-lg">
-                      {(item.price * item.quantity).toLocaleString()} сум
-                    </p>
-                    <button
-                      onClick={() => removeFromCart(item.id)}
-                      className="mt-2 text-red-500 hover:text-red-700"
-                    >
-                      <X className="h-5 w-5" />
-                    </button>
-                  </div>
-                </div>
-              </div>
+        
+        {/* Previously Viewed */}
+        <div>
+          <h2 className="text-2xl font-bold mb-6 text-gray-800">Ранее вы смотрели</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {previouslyViewed.map(product => (
+              <motion.div
+                key={product.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-white p-4 rounded-lg shadow-md text-center"
+              >
+                <img src={product.image} alt={product.name} className="w-full h-40 object-contain mb-2" />
+                <h3 className="text-sm font-medium text-gray-800 mb-1">{product.name}</h3>
+                <p className="text-blue-600 font-bold mb-2">{product.price} P/шт</p>
+                <button className="w-full bg-yellow-400 text-gray-800 py-2 rounded-full text-sm font-bold hover:bg-yellow-500 transition">
+                  КУПИТЬ В 1 КЛИК
+                </button>
+              </motion.div>
             ))}
-          </div>
-
-          {/* Order Summary */}
-          <div className="lg:col-span-1">
-            <div className="bg-white p-6 rounded-2xl shadow-md sticky top-8">
-              <h2 className="text-xl font-semibold mb-6">Итого по заказу</h2>
-              
-              <div className="space-y-3 mb-6">
-                <div className="flex justify-between">
-                  <span>Товары ({items.reduce((sum, item) => sum + item.quantity, 0)})</span>
-                  <span>{totalPrice.toLocaleString()} сум</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Доставка</span>
-                  <span className="text-green-600">Бесплатно</span>
-                </div>
-                <hr />
-                <div className="flex justify-between font-bold text-lg">
-                  <span>К оплате</span>
-                  <span>{totalPrice.toLocaleString()} сум</span>
-                </div>
-              </div>
-
-              <div className="space-y-3">
-                <Link
-                  to="/checkout"
-                  className="block w-full bg-yellow-400 text-white py-3 px-4 rounded-lg text-center font-semibold hover:bg-yellow-500 transition-colors"
-                >
-                  Оформить заказ
-                </Link>
-                <Link
-                  to="/quick-order"
-                  className="block w-full bg-gray-100 text-gray-800 py-3 px-4 rounded-lg text-center font-semibold hover:bg-gray-200 transition-colors"
-                >
-                  Быстрый заказ
-                </Link>
-                <Link
-                  to="/catalog"
-                  className="block w-full text-center text-yellow-600 hover:text-yellow-700 font-medium"
-                >
-                  Продолжить покупки
-                </Link>
-              </div>
-            </div>
           </div>
         </div>
       </div>

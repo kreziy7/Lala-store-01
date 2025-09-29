@@ -20,6 +20,7 @@ import {
   Filter
 } from 'lucide-react';
 import AnimatedCard from '../components/AnimatedCard';
+
 import LoadingSpinner from '../components/LoadingSpinner';
 
 const AdminPanel = () => {

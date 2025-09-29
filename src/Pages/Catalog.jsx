@@ -1,198 +1,314 @@
-// src/pages/Catalog.jsx
-import React, { useState, useEffect } from 'react';
-import { Search, Filter, ChevronDown, ArrowUpDown } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { useTheme } from '../context/ThemeContext';
-import AnimatedCard from '../components/AnimatedCard';
-import ProductCard from '../components/ProductCard';
-import LoadingSpinner from '../components/LoadingSpinner';
+import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import pushti from "../assets/pushti.png";
+import kok from "../assets/kok.png";
+import pushti2 from "../assets/pushti2.png";
+import mushuk from "../assets/mushuk.png";
+import fruktik from "../assets/fruktik.png";
+import pushti3 from "../assets/pushti3.png";
+
+// Updated products to match screenshot: added color, size, stock status
+const products = [
+  {
+    id: 1,
+    name: 'Боди без рукавов "ФРУК-ТИК", розовый',
+    price: 99900,
+    image: pushti,
+    color: "розовый",
+    size: "56",
+    stock: "in_stock",
+  },
+  {
+    id: 2,
+    name: 'Боди без рукавов "ФРУК-ТИК", розовый',
+    price: 99900,
+    image: kok,
+    color: "голубой",
+    size: "62-68",
+    stock: "in_stock",
+  },
+  {
+    id: 3,
+    name: 'Боди без рукавов "ФРУК-ТИК", розовый',
+    price: 99900,
+    image: pushti2,
+    color: "розовый",
+    size: "68",
+    stock: "in_stock",
+  },
+  {
+    id: 4,
+    name: 'Боди без рукавов "ДРУГ-ТИК", розовый',
+    price: 99900,
+    image: mushuk,
+    color: "розовый",
+    size: "74",
+    stock: "out_of_stock",
+  },
+  {
+    id: 5,
+    name: 'Боди без рукавов "ФРУК-ТИК", розовый',
+    price: 99900,
+    image: fruktik,
+    color: "бежевый",
+    size: "80-86",
+    stock: "warehouse",
+  },
+  {
+    id: 6,
+    name: 'Боди без рукавов "ФРУК-ТИК", розовый',
+    price: 99900,
+    image: pushti3,
+    color: "розовый",
+    size: "56",
+    stock: "in_stock",
+  },
+  {
+    id: 7,
+    name: 'Боди без рукавов "ФРУК-ТИК", розовый',
+    price: 99900,
+    image: pushti,
+    color: "голубой",
+    size: "62-68",
+    stock: "in_stock",
+  },
+  {
+    id: 8,
+    name: 'Боди без рукавов "ФРУК-ТИК", розовый',
+    price: 99900,
+    image: kok,
+    color: "розовый",
+    size: "68",
+    stock: "in_stock",
+  },
+  {
+    id: 9,
+    name: 'Боди без рукавов "ДРУГ-ТИК", розовый',
+    price: 99900,
+    image: pushti2,
+    color: "розовый",
+    size: "74",
+    stock: "out_of_stock",
+  },
+  {
+    id: 10,
+    name: 'Боди без рукавов "ФРУК-ТИК", розовый',
+    price: 99900,
+    image: mushuk,
+    color: "бежевый",
+    size: "80-86",
+    stock: "warehouse",
+  },
+];
+
+// Unique colors and sizes for filters
+const colors = [
+  "Оттенок белого",
+  "Оттенок голубого",
+  "Оттенок желтого",
+  "Оттенок зеленого",
+  "Оттенок розового",
+  "Оттенок серого",
+];
+const sizes = ["56", "62-68", "68", "74", "80-86"];
 
 const Catalog = () => {
-  const { theme, isAnimated } = useTheme();
-  const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState(['All']);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const [sortOption, setSortOption] = useState('default');
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [priceRange, setPriceRange] = React.useState([99900, 99900]);
+  const [selectedColors, setSelectedColors] = React.useState([]);
+  const [selectedSizes, setSelectedSizes] = React.useState([]);
 
-  useEffect(() => {
-    // Fetch products and categories from db.json
-    const fetchData = async () => {
-      try {
-        const [productsResponse, categoriesResponse] = await Promise.all([
-          fetch('http://localhost:3000/products'),
-          fetch('http://localhost:3000/categories'),
-        ]);
+  const handleColorChange = (color) => {
+    setSelectedColors((prev) =>
+      prev.includes(color) ? prev.filter((c) => c !== color) : [...prev, color]
+    );
+  };
 
-        if (!productsResponse.ok || !categoriesResponse.ok) {
-          throw new Error('Failed to fetch data');
-        }
+  const addToCart = (product) => {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const existing = cart.find((item) => item.id === product.id);
+    if (existing) {
+      existing.quantity = (existing.quantity || 1) + 1;
+    } else {
+      cart.push({ ...product, quantity: 1 });
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+  };
 
-        const productsData = await productsResponse.json();
-        const categoriesData = await categoriesResponse.json();
+  const handleSizeChange = (size) => {
+    setSelectedSizes((prev) =>
+      prev.includes(size) ? prev.filter((s) => s !== size) : [...prev, size]
+    );
+  };
 
-        setProducts(productsData);
-        setCategories(['All', ...categoriesData.map((cat) => cat.name)]);
-        setLoading(false);
-      } catch (err) {
-        setError('Ошибка загрузки данных. Попробуйте позже.');
-        setLoading(false);
-      }
-    };
+  const resetFilters = () => {
+    setPriceRange([99900, 99900]);
+    setSelectedColors([]);
+    setSelectedSizes([]);
+  };
 
-    fetchData();
-  }, []);
-
-  // Filter and sort products
-  useEffect(() => {
-    let filtered = [...products];
-
-    // Apply search filter
-    if (searchTerm.trim()) {
-      filtered = filtered.filter((product) =>
-        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  // Filter logic
+  const filteredProducts = products.filter((product) => {
+    const inPrice =
+      product.price >= priceRange[0] && product.price <= priceRange[1];
+    const inColor =
+      selectedColors.length === 0 ||
+      selectedColors.some((c) =>
+        product.color.includes(c.replace("Оттенок ", ""))
       );
-    }
+    const inSize =
+      selectedSizes.length === 0 || selectedSizes.includes(product.size);
+    return inPrice && inColor && inSize;
+  });
 
-    // Apply category filter
-    if (selectedCategory !== 'All') {
-      filtered = filtered.filter((product) => product.category === selectedCategory);
-    }
-
-    // Apply sorting
-    if (sortOption === 'price-asc') {
-      filtered.sort((a, b) => a.price - b.price);
-    } else if (sortOption === 'price-desc') {
-      filtered.sort((a, b) => b.price - a.price);
-    } else if (sortOption === 'name-asc') {
-      filtered.sort((a, b) => a.name.localeCompare(b.name));
-    }
-
-    setProducts(filtered);
-  }, [searchTerm, selectedCategory, sortOption]);
-
-  const handleSearch = (e) => {
-    setSearchTerm(e.target.value);
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
   };
 
-  const toggleFilter = () => {
-    setIsFilterOpen(!isFilterOpen);
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1 },
   };
 
-  if (loading) {
-    return (
-      <div className={`min-h-screen flex items-center justify-center ${theme.background} ${theme.text}`}>
-        <LoadingSpinner size="xl" text="Загрузка каталога..." />
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className={`min-h-screen flex items-center justify-center ${theme.background} ${theme.text}`}>
-        <AnimatedCard className="p-6 text-center">
-          <p className={`text-lg ${theme.text}`}>{error}</p>
-        </AnimatedCard>
-      </div>
-    );
-  }
+  // Formatter for prices: 99 900 ₽
+  const formatPrice = (price) =>
+    new Intl.NumberFormat("ru-RU").format(price) + " ₽/шт";
 
   return (
-    <div className={`min-h-screen py-8 ${theme.background} ${theme.text}`}>
-      <div className="container mx-auto px-4">
-        {/* Header Section */}
-        <AnimatedCard className="text-center mb-8" hover3D={true} glowEffect={true}>
-          <h1 className={`text-3xl font-bold ${theme.text} mb-4`}>Каталог товаров</h1>
-          <p className={`${theme.textSecondary}`}>
-            Найдите идеальные товары для вашего ребенка
+    <div className="flex min-h-screen bg-gray-100">
+      {/* Sidebar Filters */}
+      <motion.aside
+        initial={{ x: -300, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="w-1/4 p-6 bg-white shadow-lg"
+      >
+        <h2 className="text-xl font-bold mb-4 text-gray-800">Фильтры</h2>
+
+        {/* Price Filter */}
+        <div className="mb-6">
+          <h3 className="font-semibold mb-2 text-gray-800">Цена</h3>
+          <p className="text-sm text-gray-600 mt-2">
+            {formatPrice(priceRange[0])} – {formatPrice(priceRange[1])}
           </p>
-        </AnimatedCard>
+        </div>
 
-        {/* Search and Filter Section */}
-        <AnimatedCard className="p-6 mb-8" hover3D={true} glowEffect={true}>
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-            <div className="relative w-full md:w-1/2">
-              <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 ${theme.textSecondary}`} />
+        {/* Color Filter */}
+        <div className="mb-6">
+          <h3 className="font-semibold mb-2 text-gray-800">Цвета</h3>
+          {colors.map((color) => (
+            <div key={color} className="flex items-center mb-1">
               <input
-                type="text"
-                placeholder="Поиск товаров..."
-                value={searchTerm}
-                onChange={handleSearch}
-                className={`w-full pl-10 pr-4 py-2 border ${theme.border} rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary)] ${theme.surface} ${theme.text}`}
+                type="checkbox"
+                id={color}
+                checked={selectedColors.includes(color)}
+                onChange={() => handleColorChange(color)}
+                className="mr-2 accent-yellow-500"
               />
+              <label htmlFor={color} className="text-gray-700">
+                {color}
+              </label>
             </div>
-            <div className="flex items-center space-x-4 w-full md:w-auto">
-              <div className="relative">
+          ))}
+        </div>
+
+        {/* Size Filter */}
+        <div className="mb-6">
+          <h3 className="font-semibold mb-2 text-gray-800">Размер</h3>
+          {sizes.map((size) => (
+            <div key={size} className="flex items-center mb-1">
+              <input
+                type="checkbox"
+                id={size}
+                checked={selectedSizes.includes(size)}
+                onChange={() => handleSizeChange(size)}
+                className="mr-2 accent-yellow-500"
+              />
+              <label htmlFor={size} className="text-gray-700">
+                {size}
+              </label>
+            </div>
+          ))}
+        </div>
+
+        {/* Reset Button */}
+        <button
+          onClick={resetFilters}
+          className="w-full bg-yellow-400 text-gray-800 py-2 rounded-full font-bold hover:bg-yellow-500 transition"
+        >
+          СБРОСИТЬ
+        </button>
+      </motion.aside>
+
+      {/* Main Catalog */}
+      <main className="w-3/4 p-6">
+        <h1 className="text-2xl font-bold mb-4 text-gray-800">Каталог</h1>
+        <motion.div
+          className="grid grid-cols-5 gap-4"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <AnimatePresence>
+            {filteredProducts.map((product) => (
+              <motion.div
+                key={product.id}
+                variants={itemVariants}
+                layout
+                initial="hidden"
+                animate="visible"
+                exit={{ opacity: 0, scale: 0.8 }}
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0px 10px 20px rgba(0,0,0,0.1)",
+                }}
+                className="bg-white p-4 rounded-lg shadow-md text-center"
+              >
+                <div className="relative">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-40 object-contain mb-2"
+                  />
+                  {product.stock === "in_stock" && (
+                    <span className="absolute top-2 left-2 bg-green-200 text-green-800 px-2 py-1 rounded-full text-xs">
+                      В наличии
+                    </span>
+                  )}
+                  {product.stock === "out_of_stock" && (
+                    <span className="absolute top-2 left-2 bg-red-200 text-red-800 px-2 py-1 rounded-full text-xs">
+                      Нет в наличии
+                    </span>
+                  )}
+                  {product.stock === "warehouse" && (
+                    <span className="absolute top-2 left-2 bg-blue-200 text-blue-800 px-2 py-1 rounded-full text-xs">
+                      На складе
+                    </span>
+                  )}
+                </div>
+                <h3 className="text-sm font-medium text-blue-600 mb-1">
+                  {product.name}
+                </h3>
+                <p className="text-gray-800 font-bold mb-2">
+                  {formatPrice(product.price)}
+                </p>
                 <button
-                  onClick={toggleFilter}
-                  className={`flex items-center px-4 py-2 ${theme.secondary} rounded-lg ${theme.primaryHover} ${isAnimated ? 'transition-all hover:scale-105' : ''}`}
+                  onClick={() => addToCart(product)}
+                  className="w-full bg-yellow-400 text-gray-800 py-2 rounded-full font-bold hover:bg-yellow-500 transition"
                 >
-                  <Filter className="h-4 w-4 mr-2" />
-                  <span>{selectedCategory}</span>
-                  <ChevronDown className={`h-4 w-4 ml-2 ${isAnimated ? 'transition-transform' : ''} ${isFilterOpen ? 'rotate-180' : ''}`} />
+                  В КОРЗИНУ
                 </button>
-                {isFilterOpen && (
-                  <div className={`absolute mt-2 w-48 ${theme.surface} border ${theme.border} rounded-lg ${theme.shadow} ${isAnimated ? 'animate-fade-in' : ''} z-10`}>
-                    {categories.map((category) => (
-                      <button
-                        key={category}
-                        onClick={() => {
-                          setSelectedCategory(category);
-                          setIsFilterOpen(false);
-                        }}
-                        className={`block w-full text-left px-4 py-2 ${theme.text} hover:${theme.secondary} ${isAnimated ? 'transition-colors' : ''}`}
-                      >
-                        {category}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-              <div className="relative">
-                <select
-                  value={sortOption}
-                  onChange={(e) => setSortOption(e.target.value)}
-                  className={`px-4 py-2 ${theme.secondary} rounded-lg ${theme.text} focus:outline-none focus:ring-2 focus:ring-[var(--primary)] ${isAnimated ? 'transition-all' : ''}`}
-                >
-                  <option value="default">По умолчанию</option>
-                  <option value="price-asc">Цена: по возрастанию</option>
-                  <option value="price-desc">Цена: по убыванию</option>
-                  <option value="name-asc">Название: A-Z</option>
-                </select>
-                <ArrowUpDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4" />
-              </div>
-            </div>
-          </div>
-        </AnimatedCard>
-
-        {/* Products Grid */}
-        {products.length === 0 ? (
-          <AnimatedCard className="p-6 text-center" hover3D={true}>
-            <p className={`text-lg ${theme.text}`}>Товары не найдены</p>
-          </AnimatedCard>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              </motion.div>
             ))}
-          </div>
-        )}
-
-        {/* CTA Section */}
-        <AnimatedCard className={`mt-12 p-8 text-center ${theme.gradient} ${isAnimated ? 'animate-pulse' : ''}`} hover3D={true} glowEffect={true}>
-          <h2 className="text-2xl font-bold text-white mb-4">Не нашли нужный товар?</h2>
-          <p className="text-white mb-6">Оформите быструю заявку, и мы поможем вам!</p>
-          <Link
-            to="/quick-order"
-            className={`inline-block px-8 py-3 ${theme.primary} text-white rounded-lg font-semibold ${theme.primaryHover} ${isAnimated ? 'hover:scale-105 transition-all' : ''} ${theme.glowEffect}`}
-          >
-            Оформить заявку
-          </Link>
-        </AnimatedCard>
-      </div>
+          </AnimatePresence>
+        </motion.div>
+      </main>
     </div>
   );
 };

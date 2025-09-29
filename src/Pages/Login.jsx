@@ -17,15 +17,29 @@ const Login = () => {
     setError('');
     setLoading(true);
 
-    const success = await login(formData.email, formData.password);
-    
-    if (success) {
-      navigate('/profile');
-    } else {
-      setError('Неверный email или пароль');
+    try {
+      // 👉 Проверка на админа
+      if (
+        formData.email === 'lalastore@gmail.com' &&
+        formData.password === 'lalastore12345'
+      ) {
+        navigate('/admin');
+      } else {
+        // 👉 Проверка через обычный login()
+        const success = await login(formData.email, formData.password);
+
+        if (success) {
+          navigate('/profile');
+        } else {
+          setError('Неверный email или пароль');
+        }
+      }
+    } catch (err) {
+      console.error(err);
+      setError('Ошибка при входе. Попробуйте ещё раз.');
+    } finally {
+      setLoading(false);
     }
-    
-    setLoading(false);
   };
 
   return (
@@ -77,7 +91,9 @@ const Login = () => {
                   autoComplete="email"
                   required
                   value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-yellow-500 focus:border-yellow-500"
                 />
               </div>
@@ -95,7 +111,9 @@ const Login = () => {
                   autoComplete="current-password"
                   required
                   value={formData.password}
-                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, password: e.target.value })
+                  }
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-yellow-500 focus:border-yellow-500"
                 />
               </div>
